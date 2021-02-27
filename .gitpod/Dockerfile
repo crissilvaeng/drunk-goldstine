@@ -4,7 +4,5 @@ USER root
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update
-
-RUN wget https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py \
-    && python3 get-poetry.py --yes
+RUN apt-get update && apt-get clean \
+    && rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*
