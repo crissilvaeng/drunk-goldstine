@@ -10,3 +10,14 @@ tasks:
 github:
   prebuilds:
     main: true
+
+vscode:
+  extensions:
+    - coenraads.bracket-pair-colorizer-2@0.1.4:+JUeb/jFYZt2/0MS/gUllA==
+    - tabnine.tabnine-vscode@3.2.7:e4LnpmT2eZcnC+7y5pZ+DA==
+    - oderwat.indent-rainbow@7.5.0:CpN4cZnk34gVihISgY/1Qw==
+    - littlefoxteam.vscode-python-test-adapter@0.6.6:dFrDC47V32ioT4mq1YZKPg==
+    - aaron-bond.better-comments@2.1.0:w1dHZXyFPGn7vpca57Nf5g==
+    - njpwerner.autodocstring@0.5.4:TKRAH5+nBrBnq+ysTYA86Q==
+    - kevinrose.vsc-python-indent@1.12.0:NOHaOm1IToFrG4fit4+hUw==
+    - almenon.arepl@2.0.1:JWXhed/Ti1CHdOqmOfP5wg==
