@@ -2,6 +2,8 @@ image:
   file: .gitpod/Dockerfile
 
 tasks:
+  - name: FiraCode
+    init: .gitpod/firacode/init.sh
   - name: Git
     command: .gitpod/git/command.sh
 
