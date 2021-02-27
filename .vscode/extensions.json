@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "zhuangtongfa.material-theme",
+        "pkief.material-icon-theme",
+        "eamodio.gitlens",
+        "formulahendry.code-runner",
+        "coenraads.bracket-pair-colorizer-2"
+    ]
+}

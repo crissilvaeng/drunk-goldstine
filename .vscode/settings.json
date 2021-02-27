@@ -1,5 +1,3 @@
-// 20210227004514
-// https://raw.githubusercontent.com/crissilvaeng/prickly-mclean/main/.vscode/settings.json
 {
     "editor.autoClosingBrackets": "always",
     "editor.autoClosingQuotes": "always",
@@ -18,8 +16,7 @@
     ],
     "enable-crash-reporter": false,
     "files.exclude": {
-        "**/.git": true,
-        "**/.elixir_ls": true
+        "**/.git": true
     },
     "telemetry.enableTelemetry": false,
     "workbench.colorTheme": "One Dark Pro",
