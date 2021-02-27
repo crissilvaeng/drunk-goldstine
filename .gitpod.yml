@@ -1,0 +1,10 @@
+image:
+  file: .gitpod/Dockerfile
+
+tasks:
+  - name: Git
+    command: .gitpod/git/command.sh
+
+github:
+  prebuilds:
+    main: true
