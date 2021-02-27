@@ -3,7 +3,7 @@ image:
 
 tasks:
   - name: FiraCode
-    command: .gitpod/firacode/init.sh
+    command: .gitpod/firacode/command.sh
   - name: Git
     command: .gitpod/git/command.sh
 
