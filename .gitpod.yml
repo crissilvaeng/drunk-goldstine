@@ -7,6 +7,13 @@ tasks:
   - name: Git
     command: .gitpod/git/command.sh
 
+vscode:
+  extensions:
+    - coenraads.bracket-pair-colorizer-2@0.2.0:R8flOpw1fEZe6KyMNNNqBQ==
+    - pkief.material-icon-theme@4.4.0:rUeW9VprKCFBXYTvg+AimA==
+    - eamodio.gitlens@10.2.1:WIWu3zHU4VPT8r/v866LUw==
+    - formulahendry.code-runner@0.11.1:hLisqB9ugwNp1563+VahaQ==
+
 github:
   prebuilds:
     main: true

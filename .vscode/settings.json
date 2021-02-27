@@ -1,0 +1,28 @@
+// 20210227004514
+// https://raw.githubusercontent.com/crissilvaeng/prickly-mclean/main/.vscode/settings.json
+{
+    "editor.autoClosingBrackets": "always",
+    "editor.autoClosingQuotes": "always",
+    "editor.fontFamily": "Fira Code Retina",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 14,
+    "editor.fontWeight": "300",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.minimap.enabled": true,
+    "editor.cursorStyle": "block",
+    "editor.cursorBlinking": "smooth",
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "enable-crash-reporter": false,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.elixir_ls": true
+    },
+    "telemetry.enableTelemetry": false,
+    "workbench.colorTheme": "One Dark Pro",
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.iconTheme": "material-icon-theme"
+}
