@@ -3,9 +3,11 @@ image:
 
 tasks:
   - name: FiraCode
-    command: .gitpod/firacode/command.sh
+    init: .gitpod/firacode/init.sh
   - name: Git
     command: .gitpod/git/command.sh
+  - name: Poetry
+    init: .gitpod/poetry/init.sh
 
 github:
   prebuilds:

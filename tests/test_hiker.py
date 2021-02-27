@@ -1,5 +1,6 @@
-from hiker import global_answer, Hiker
 import unittest
+
+from src.hiker import global_answer, Hiker
 
 
 class TestHiker(unittest.TestCase):
@@ -12,4 +13,4 @@ class TestHiker(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()  # pragma: no cover
+    unittest.main()
