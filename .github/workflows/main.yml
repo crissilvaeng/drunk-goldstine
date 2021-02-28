@@ -1,0 +1,84 @@
+name: Python Build, Test and Lint
+
+push:
+  branches: [ main ]
+
+jobs:
+  build:
+    name: ${{ matrix.os }} / ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}-latest
+    strategy:
+      matrix:
+        os: [Ubuntu, MacOS, Windows]
+        python: [3.6, 3.7, 3.8, 3.9]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python: ${{ matrix.python }}
+      - name: Python Version
+        id: python-version
+        shell: bash
+        run: echo ::set-output name=version::$(python -c "import sys; print('-'.join(str(v) for v in sys.version_info))")
+      - name: Install Poetry
+        run: |
+          pip install poetry
+          python -m poetry config virtualenvs.in-project true
+      - name: Install Dependencies
+        run:  python -m poetry install
+      - name: Cache Dependencies
+        uses: actions/cache@v2
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ steps.python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}
+      - name: Build
+        run: python -m poetry build
+
+  test:
+    needs: build
+    name: ${{ matrix.os }} / ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}-latest
+    strategy:
+      matrix:
+        os: [Ubuntu, MacOS, Windows]
+        python: [3.6, 3.7, 3.8, 3.9]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python: ${{ matrix.python }}
+    - uses: actions/cache@v2
+      with:
+        path: .venv
+        key: venv-${{ runner.os }}-${{ steps.python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }} 
+        restore-keys: |
+          venv-${{ runner.os }}-${{ steps.python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }} 
+    - name: Install Tox
+      run: pip install tox
+    - name: Test
+      run:  tox
+
+  lint:
+    needs: build
+    name: ${{ matrix.os }} / ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python: ${{ matrix.python }}
+    - uses: actions/cache@v2
+      with:
+        path: .venv
+        key: venv-${{ runner.os }}-${{ steps.python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }} 
+        restore-keys: |
+          venv-${{ runner.os }}-${{ steps.python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }} 
+    - name: Install Flake8
+      run: pip install flake8
+    - name: Lint
+      run: |
+        flake8 . --count --show-source --statistics
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
