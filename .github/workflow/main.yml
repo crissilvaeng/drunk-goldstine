@@ -1,84 +1,36 @@
-name: Python Build, Test and Lint
+# This is a basic workflow to help you get started with Actions
 
-push:
-  branches: [ main ]
+name: CI
 
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  # This workflow contains a single job called "build"
   build:
-    name: ${{ matrix.os }} / ${{ matrix.python }}
-    runs-on: ${{ matrix.os }}-latest
-    strategy:
-      matrix:
-        os: [Ubuntu, MacOS, Windows]
-        python: [3.6, 3.7, 3.8, 3.9]
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python: ${{ matrix.python }}
-      - name: Python Version
-        id: python-version
-        shell: bash
-        run: echo ::set-output name=version::$(python -c "import sys; print('-'.join(str(v) for v in sys.version_info))")
-      - name: Install Poetry
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
         run: |
-          pip install poetry
-          python -m poetry config virtualenvs.in-project true
-      - name: Install Dependencies
-        run:  python -m poetry install
-      - name: Cache Dependencies
-        uses: actions/cache@v2
-        with:
-          path: .venv
-          key: venv-${{ runner.os }}-${{ steps.python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}
-      - name: Build
-        run: python -m poetry build
-
-  test:
-    needs: build
-    name: ${{ matrix.os }} / ${{ matrix.python }}
-    runs-on: ${{ matrix.os }}-latest
-    strategy:
-      matrix:
-        os: [Ubuntu, MacOS, Windows]
-        python: [3.6, 3.7, 3.8, 3.9]
-    steps:
-      - uses: actions/checkout@v2
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python: ${{ matrix.python }}
-    - uses: actions/cache@v2
-      with:
-        path: .venv
-        key: venv-${{ runner.os }}-${{ steps.python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }} 
-        restore-keys: |
-          venv-${{ runner.os }}-${{ steps.python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }} 
-    - name: Install Tox
-      run: pip install tox
-    - name: Test
-      run:  tox
-
-  lint:
-    needs: build
-    name: ${{ matrix.os }} / ${{ matrix.python }}
-    runs-on: ${{ matrix.os }}-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python: ${{ matrix.python }}
-    - uses: actions/cache@v2
-      with:
-        path: .venv
-        key: venv-${{ runner.os }}-${{ steps.python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }} 
-        restore-keys: |
-          venv-${{ runner.os }}-${{ steps.python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }} 
-    - name: Install Flake8
-      run: pip install flake8
-    - name: Lint
-      run: |
-        flake8 . --count --show-source --statistics
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+          echo Add other actions to build,
+          echo test, and deploy your project.
