@@ -21,5 +21,15 @@
     "telemetry.enableTelemetry": false,
     "workbench.colorTheme": "One Dark Pro",
     "workbench.editor.highlightModifiedTabs": true,
-    "workbench.iconTheme": "material-icon-theme"
+    "workbench.iconTheme": "material-icon-theme",
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./tests",
+        "-p",
+        "test_*.py"
+    ],
+    "python.testing.pytestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.unittestEnabled": true
 }
