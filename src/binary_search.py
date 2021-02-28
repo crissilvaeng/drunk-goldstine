@@ -29,7 +29,7 @@ def binary_search(elements: Iterable[Type[T]], element: Type[T]) -> int:
     high = len(elements) - 1
 
     while low <= high:
-        mid = (low + high) / 2
+        mid = (low + high) // 2
         guess = elements[mid]
         if guess == element:
             return mid
